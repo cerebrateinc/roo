@@ -186,9 +186,9 @@ class Roo::GenericSpreadsheet
       return true
     else
       sio = StringIO.new
-      write_csv_content(sio,sheet)
+      data = write_csv_content(sio,sheet)
       sio.rewind
-      return sio.read
+      return data
     end
   end
 
@@ -748,6 +748,7 @@ class Roo::GenericSpreadsheet
           file.print cell_to_csv(row,col,sheet)
         end
         file.print("\n")
+        return file
       end # sheet not empty
     end
   end

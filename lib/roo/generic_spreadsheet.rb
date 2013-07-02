@@ -187,7 +187,7 @@ class Roo::GenericSpreadsheet
     else
       sio = StringIO.new
       data = write_csv_content(sio,sheet)
-      sio.rewind
+      # sio.rewind
       return data
     end
   end

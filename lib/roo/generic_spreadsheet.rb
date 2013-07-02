@@ -186,9 +186,9 @@ class Roo::GenericSpreadsheet
       return true
     else
       sio = StringIO.new
-      data = write_csv_content(sio,sheet)
-      # sio.rewind
-      return data
+      write_csv_content(sio,sheet)
+      sio.rewind
+      return sio.read
     end
   end
 
@@ -740,16 +740,14 @@ class Roo::GenericSpreadsheet
   # Write all cells to the csv file. File can be a filename or nil. If the this
   # parameter is nil the output goes to STDOUT
   def write_csv_content(file=nil,sheet=nil)
-    output = String.new
-    # file ||= output
+    file ||= STDOUT
     if first_row(sheet) # sheet is not empty
       1.upto(last_row(sheet)) do |row|
         1.upto(last_column(sheet)) do |col|
-          output.concat(",") if col > 1
-          output.concat cell_to_csv(row,col,sheet)
+          file.print(",") if col > 1
+          file.print cell_to_csv(row,col,sheet)
         end
-        output.concat("\n")
-        return file
+        file.print("\n")
       end # sheet not empty
     end
   end

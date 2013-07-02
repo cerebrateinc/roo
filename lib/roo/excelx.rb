@@ -67,7 +67,6 @@ class Roo::Excelx < Roo::GenericSpreadsheet
   # initialization and opening of a spreadsheet file
   # values for packed: :zip
   def initialize(filename, packed=nil, file_warning = :error) #, create = false)
-    file_type_check(filename,'.xlsx','an Excel-xlsx', file_warning, packed)
     make_tmpdir do |tmpdir|
       filename = open_from_uri(filename, tmpdir) if uri?(filename)
       filename = unzip(filename, tmpdir) if packed == :zip

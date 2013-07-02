@@ -740,14 +740,15 @@ class Roo::GenericSpreadsheet
   # Write all cells to the csv file. File can be a filename or nil. If the this
   # parameter is nil the output goes to STDOUT
   def write_csv_content(file=nil,sheet=nil)
-    file ||= STDOUT
+    output = String.new
+    # file ||= output
     if first_row(sheet) # sheet is not empty
       1.upto(last_row(sheet)) do |row|
         1.upto(last_column(sheet)) do |col|
-          file.print(",") if col > 1
-          file.print cell_to_csv(row,col,sheet)
+          output.concat(",") if col > 1
+          output.concat cell_to_csv(row,col,sheet)
         end
-        file.print("\n")
+        output.concat("\n")
         return file
       end # sheet not empty
     end

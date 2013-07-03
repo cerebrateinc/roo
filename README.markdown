@@ -61,6 +61,11 @@ While Roo is licensed under the MIT / Expat license, please note that the 'sprea
 see http://roo.rubyforge.org for a more complete tutorial
 
 # Fork Changelog / New Features
+This fork accepts files without extension. Especially useful for uploaded files. You can check filetype using content-type.
+
+  `xls = Roo::Excelx('/tmp/RackMultipart20130702-8071-1ghlv68') `
+  # or file.path where file is the object that holds uploaded file 
+
 
     # Spreadsheet.open can accept both files and paths
 
